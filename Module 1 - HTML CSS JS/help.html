@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center — CivicHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { padding-top: 80px; }
+        .help-hero { background: linear-gradient(135deg, #0f2942, #1a4a7a); padding: 4rem 0; color: white; }
+        .help-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; }
+        .faq-item { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+        .faq-item h5 { font-family: 'Syne', sans-serif; color: #0f2942; }
+        .faq-item p { color: #6b7280; margin: 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="background:rgba(15,41,66,0.97)">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="brand-icon"><i class="bi bi-building-fill-check"></i></span>
+                <span class="brand-name">CivicHub</span>
+            </a>
+            <a href="index.html" class="btn btn-accent btn-sm px-3">
+                <i class="bi bi-arrow-left me-1"></i>Back to Portal
+            </a>
+        </div>
+    </nav>
+
+    <div class="help-hero">
+        <div class="container text-center">
+            <h1>Help Center</h1>
+            <p class="lead opacity-75">Everything you need to know about CivicHub</p>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h4 class="fw-bold mb-4" style="font-family:'Syne',sans-serif">Frequently Asked Questions</h4>
+
+                <div class="faq-item">
+                    <h5><i class="bi bi-question-circle text-accent me-2"></i>How do I register for an event?</h5>
+                    <p>Visit the Registration section on the portal, fill in your name, email, preferred date, and select an event type. Click "Register Now" to complete your registration.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h5><i class="bi bi-question-circle text-accent me-2"></i>Can I change my event preference?</h5>
+                    <p>Yes. Select a new event type from the dropdown and your preference will be saved automatically. Use "Clear Saved Preferences" to reset.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h5><i class="bi bi-question-circle text-accent me-2"></i>How does geolocation work?</h5>
+                    <p>Click "Find Nearby Events" and allow your browser to access your location. The portal will then display community events near you.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h5><i class="bi bi-question-circle text-accent me-2"></i>How do I submit feedback?</h5>
+                    <p>Scroll to the Feedback section, select the event you attended, rate it using the star rating, write your feedback, and click Submit.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h5><i class="bi bi-question-circle text-accent me-2"></i>Who can I contact for support?</h5>
+                    <p>Use the Contact section on the portal or email us at <a href="mailto:events@cityhub.gov.in" class="link-accent">events@cityhub.gov.in</a>.</p>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="index.html" class="btn btn-accent btn-lg px-5">
+                        <i class="bi bi-arrow-left me-2"></i>Back to Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

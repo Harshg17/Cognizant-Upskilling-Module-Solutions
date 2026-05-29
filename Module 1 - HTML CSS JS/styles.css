@@ -1,100 +1,1167 @@
+/* ============================================================
+   CivicHub — Community Event Portal
+   External Stylesheet (CSS Topic 1)
+   ============================================================ */
 
-:root {
-    --primary: #4361ee;
-    --secondary: #3f37c9;
-    --dark: #212529;
-    --light-bg: #f8f9fa;
-}
-
+/* Universal selector reset (CSS Topic 3) */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+/* ============================================================
+   CSS Variables — Design Tokens
+   ============================================================ */
+:root {
+    --primary: #0f2942;
+    --primary-mid: #1a3f65;
+    --accent: #f97316;
+    --accent-hover: #ea6c0a;
+    --accent-light: rgba(249, 115, 22, 0.12);
+    --bg: #f8f7f4;
+    --bg-subtle: #eef0f5;
+    --surface: #ffffff;
+    --text: #1a1a2e;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --success: #10b981;
+    --danger: #ef4444;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --shadow-sm: 0 2px 8px rgba(15, 41, 66, 0.08);
+    --shadow-md: 0 4px 20px rgba(15, 41, 66, 0.12);
+    --shadow-lg: 0 12px 48px rgba(15, 41, 66, 0.18);
+    --radius: 12px;
+    --radius-lg: 20px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+/* ============================================================
+   Base Styles (CSS Topic 5 — Typography)
+   ============================================================ */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+/* Body background with image and fallback color (CSS Topic 4) */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--light-bg);
-    color: var(--dark);
+    font-family: var(--font-body);
+    color: var(--text);
+    background-color: var(--bg);
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
+/* Element selector (CSS Topic 3) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+}
 
+/* Grouping selector h3, p together (CSS Topic 3) */
+h3, p {
+    margin-bottom: 1rem;
+}
+
+/* All h2 elements (CSS Topic 3) */
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+/* ============================================================
+   Navigation Styles
+   ============================================================ */
+#mainNav {
+    background: rgba(15, 41, 66, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 0;
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+#mainNav .navbar-brand {
+    text-decoration: none;
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.brand-name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.03em;
+}
+
+#mainNav .nav-link {
+    color: rgba(255,255,255,0.8) !important;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem !important;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+/* Link hover state (CSS Topic 6) */
+#mainNav .nav-link:hover {
+    color: white !important;
+    background: rgba(255,255,255,0.1);
+}
+
+/* Active link (CSS Topic 6) */
+#mainNav .nav-link:active {
+    background: rgba(249,115,22,0.2);
+}
+
+#mainNav .navbar-toggler {
+    border: none;
+    color: white;
+    padding: 0.25rem 0.5rem;
+}
+
+#mainNav .navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* ============================================================
+   Button Styles
+   ============================================================ */
+/* CTA Button — CSS Topic 2 style */
+.btn-accent {
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    color: white !important;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(249,115,22,0.3);
+}
+
+.btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249,115,22,0.4);
+    background: linear-gradient(135deg, var(--accent-hover), var(--accent));
+}
+
+.btn-accent:active {
+    transform: translateY(0);
+}
+
+/* ============================================================
+   Hero Section
+   ============================================================ */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    padding: 60px 20px;
-    margin-top: 20px;
+    min-height: 100vh;
+    /* Background gradient (CSS Topic 4) */
+    background: linear-gradient(135deg, var(--primary) 0%, #0d3153 40%, #1a4a7a 100%);
+    background-image:
+        linear-gradient(135deg, var(--primary) 0%, #0d3153 40%, #1a4a7a 100%),
+        url('https://images.unsplash.com/photo-1511578314322-379afb476865?w=1400&fit=crop');
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 0 4rem;
 }
 
+/* Background shapes */
+.hero-bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
 
-.card-img-top {
-    height: 220px;
-    object-fit: cover; 
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+    background: white;
+}
+
+.shape-1 {
+    width: 600px; height: 600px;
+    top: -200px; right: -200px;
+}
+
+.shape-2 {
+    width: 400px; height: 400px;
+    bottom: -150px; left: -100px;
+}
+
+.shape-3 {
+    width: 200px; height: 200px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.04;
+}
+
+/* Welcome Banner (HTML Topic 3 — id="welcomeBanner" with blue BG) */
+#welcomeBanner {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    backdrop-filter: blur(8px);
+}
+
+.badge-pill {
+    display: inline-flex;
+    align-items: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid rgba(249,115,22,0.3);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+}
+
+.text-accent {
+    color: var(--accent);
+    position: relative;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+    margin-bottom: 0;
+    line-height: 1.7;
+}
+
+/* Special offer span (HTML Topic 3 — inline style override is in HTML) */
+.special-offer {
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Hero stats card */
+.hero-stats-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 220px;
+    animation: fadeInUp 0.8s 0.4s both;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.stat-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.5);
+    font-size: 1.5rem;
+    text-decoration: none;
+    animation: bounce 2s infinite;
+}
+
+/* ============================================================
+   Section Styles (CSS Topic 8 — Box Model)
+   ============================================================ */
+.section-padding {
+    padding: 6rem 0;
+}
+
+.bg-subtle {
+    background-color: var(--bg-subtle);
+}
+
+/* Section header */
+.section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid rgba(249,115,22,0.2);
+    border-radius: 50px;
+    padding: 0.3rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   Events Section
+   ============================================================ */
+.filter-bar {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+}
+
+.search-input-wrap {
+    position: relative;
+}
+
+.search-input-wrap i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    z-index: 2;
+}
+
+.search-input-wrap .form-control {
+    padding-left: 2.75rem;
+}
+
+/* Event Card */
+.event-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    height: 100%;
+    cursor: pointer;
+}
+
+/* eventCard class (CSS Topic 3) — ID selector #mainHeader */
+#mainHeader {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
 }
 
 .eventCard {
-    border: none;
-    border-radius: 16px; 
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: white;
-    
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-    
-    animation: fadeInUp 0.6s ease-out forwards; 
+    position: relative;
 }
 
-.eventCard:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.12); 
+/* Box model for eventCard (CSS Topic 8) */
+.eventCard {
+    padding: 0;
+    margin-bottom: 0;
+    border: 1px solid var(--border);
+    outline: none;
 }
 
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.event-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
 }
 
-
-.event-table {
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+.event-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
 }
 
-.event-table th {
-    background-color: var(--dark);
-    color: white;
-    padding: 16px;
+.event-card-body {
+    padding: 1.5rem;
+}
+
+.event-category-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+}
+
+.cat-music { background: #fdf4ff; color: #9333ea; }
+.cat-workshop { background: #eff6ff; color: #2563eb; }
+.cat-sports { background: #f0fdf4; color: #16a34a; }
+.cat-art { background: #fff7ed; color: #ea580c; }
+.cat-food { background: #fef2f2; color: #dc2626; }
+.cat-community { background: #f0f9ff; color: #0284c7; }
+
+.event-card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.event-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.event-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.event-meta i {
+    color: var(--accent);
+    width: 14px;
+}
+
+.event-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+}
+
+.event-seats {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.event-seats.low {
+    color: var(--danger);
     font-weight: 600;
 }
 
-.event-table td {
-    padding: 16px;
-    border-bottom: 1px solid #eee;
+.event-fee {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1rem;
 }
 
-.event-table tr:hover {
-    background-color: #f1f3f5;
+/* Fee display banner */
+.fee-banner {
+    background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(249,115,22,0.05));
+    border: 1px solid rgba(249,115,22,0.3);
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    color: var(--text);
+    font-size: 1rem;
 }
 
-input:focus, select:focus, textarea:focus {
-    outline: none !important;
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15) !important;
+/* ============================================================
+   Gallery Table (HTML Topic 4, CSS Topic 7)
+   ============================================================ */
+.gallery-table {
+    border-collapse: collapse;
+    caption-side: bottom;
 }
 
-
-.navbar {
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.gallery-table caption {
+    padding-top: 1rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    font-style: italic;
 }
+
+.gallery-table td {
+    padding: 0.75rem;
+    text-align: center;
+    vertical-align: top;
+}
+
+/* Gallery image with borders using class (HTML Topic 4) */
+.gallery-img {
+    width: 260px;
+    height: 170px;
+    object-fit: cover;
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    cursor: pointer;
+    display: block;
+}
+
+.gallery-img:hover {
+    border-color: var(--accent);
+    transform: scale(1.03);
+    box-shadow: var(--shadow-md);
+}
+
+.gallery-table figure {
+    margin: 0;
+}
+
+.gallery-table figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ============================================================
+   Video Section
+   ============================================================ */
+.video-wrapper {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+}
+
+.video-status-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(16,185,129,0.1);
+    color: var(--success);
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 50px;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    animation: pulse 2s infinite;
+}
+
+/* ============================================================
+   Registration Form (HTML Topic 5, CSS Topic 8)
+   ============================================================ */
+.form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* Form controls with outline on focus (CSS Topic 8) */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--accent);
+    outline: 2px solid rgba(249,115,22,0.2);
+    outline-offset: 0;
+    box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+}
+
+.form-control,
+.form-select {
+    border-color: var(--border);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    transition: var(--transition);
+}
+
+.form-floating label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.fee-info-box {
+    background: rgba(249,115,22,0.06);
+    border: 1px solid rgba(249,115,22,0.25);
+    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.link-accent { color: var(--accent); }
+.link-accent:hover { color: var(--accent-hover); }
+
+/* Output element (HTML Topic 5) */
+.form-output {
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    min-height: 0;
+    transition: var(--transition);
+}
+
+.form-output.success {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: #065f46;
+}
+
+.form-output.error {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #7f1d1d;
+}
+
+/* ============================================================
+   Feedback Section
+   ============================================================ */
+.star-rating {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.star-rating i {
+    color: #d1d5db;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.star-rating i.active,
+.star-rating i:hover {
+    color: #f59e0b;
+}
+
+.fee-mini {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+#feedbackResult {
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ============================================================
+   Geolocation Section
+   ============================================================ */
+.geo-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.geo-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: white;
+    margin: 0 auto;
+    box-shadow: 0 8px 24px rgba(249,115,22,0.35);
+}
+
+.geo-result {
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+}
+
+.geo-result.success {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: #065f46;
+}
+
+.geo-result.error {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #7f1d1d;
+}
+
+/* ============================================================
+   Bulletin / Multi-column Section (CSS Topic 9)
+   ============================================================ */
+.bulletin-columns {
+    column-count: 2;
+    column-gap: 3rem;
+    column-rule: 1px solid var(--border);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.bulletin-columns h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    break-after: avoid;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.bulletin-columns p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* ============================================================
+   Admin Events Table (CSS Topic 7)
+   ============================================================ */
+.admin-table {
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Table header styles */
+.admin-table th {
+    background: var(--primary);
+    color: white;
+    padding: 0.85rem 1.25rem;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+/* Table data cells */
+.admin-table td {
+    padding: 0.8rem 1.25rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    color: var(--text);
+}
+
+/* Zebra striping (CSS Topic 7) */
+.admin-table tbody tr:nth-child(even) {
+    background-color: var(--bg-subtle);
+}
+
+.admin-table tbody tr:hover {
+    background-color: var(--accent-light);
+}
+
+/* Status badges in table */
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.status-open { background: rgba(16,185,129,0.1); color: #065f46; }
+.status-few { background: rgba(245,158,11,0.1); color: #92400e; }
+.status-full { background: rgba(239,68,68,0.1); color: #7f1d1d; }
+
+/* ============================================================
+   Contact Section
+   ============================================================ */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.contact-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--accent-light);
+    border: 1px solid rgba(249,115,22,0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.contact-item strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    margin-bottom: 0.15rem;
+}
+
+.contact-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Social icons (Bootstrap Topic 17) */
+.social-icons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.social-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+#mainFooter {
+    background: var(--primary);
+    color: rgba(255,255,255,0.8);
+    padding: 4rem 0 2rem;
+}
+
+.brand-icon-sm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+.footer-brand {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.03em;
+}
+
+.footer-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+}
+
+.footer-heading {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: white;
+    margin-bottom: 1.25rem;
+}
+
+/* Footer links — removing bullets from nav (CSS Topic 6) */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+/* Link pseudo-classes (CSS Topic 6) */
+.footer-links a:link { color: rgba(255,255,255,0.55); }
+.footer-links a:visited { color: rgba(255,255,255,0.45); }
+.footer-links a:hover { color: var(--accent); padding-left: 4px; }
+.footer-links a:active { color: var(--accent-hover); }
+
+.footer-divider {
+    border-color: rgba(255,255,255,0.1);
+    margin: 2.5rem 0 1.5rem;
+}
+
+.footer-copy {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    margin: 0;
+}
+
+.footer-social {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.footer-social a {
+    color: rgba(255,255,255,0.4);
+    font-size: 1.1rem;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    color: var(--accent);
+}
+
+/* ============================================================
+   Highlight Class (HTML Topic 3)
+   ============================================================ */
+.highlight {
+    background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(251,146,60,0.1));
+    border-left: 3px solid var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: 0 8px 8px 0;
+}
+
+/* ============================================================
+   Misc UI Components
+   ============================================================ */
+/* Back to top */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50% !important;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    z-index: 999;
+    box-shadow: var(--shadow-md);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Toast */
+.toast {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Loading spinner */
+.spinner-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,41,66,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    backdrop-filter: blur(4px);
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes countUp {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Hero entry animation */
+#welcomeBanner {
+    animation: fadeInUp 0.7s 0.2s both;
+}
+
+/* ============================================================
+   Media Queries — Responsive Design (CSS Topic 10)
+   ============================================================ */
+/* Tablets and smaller */
+@media (max-width: 768px) {
+    /* Stack nav links vertically */
+    .navbar-collapse {
+        background: rgba(15,41,66,0.98);
+        border-radius: var(--radius);
+        padding: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Bulletin to single column on mobile */
+    .bulletin-columns {
+        column-count: 1;
+        column-rule: none;
+    }
+
+    /* Gallery table wraps */
+    .gallery-img {
+        width: 100%;
+        height: 140px;
+    }
+
+    /* Reduce hero title size */
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    /* Full-width form card */
+    .form-card {
+        padding: 1.5rem;
+    }
+
+    /* Reduce section padding */
+    .section-padding {
+        padding: 4rem 0;
+    }
+
+    /* Reduce font sizes on mobile */
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    /* Footer social right-align becomes center */
+    .footer-social {
+        justify-content: center;
+        margin-top: 0.75rem;
+    }
+
+    /* Back to top repositioned */
+    .back-to-top {
+        bottom: 1.25rem;
+        right: 1.25rem;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    /* Use vw/vh for flexible sizing */
+    .hero-section {
+        padding-top: 7rem;
+        min-height: 100dvh;
+    }
+
+    #welcomeBanner {
+        padding: 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+}
+
+/* ============================================================
+   Visibility helpers (CSS Topic 8)
+   Compare: visibility:hidden vs display:none
+   .hidden-vis { visibility: hidden; }  — hides but keeps space
+   .hidden-disp { display: none; }      — hides and removes space
+   ============================================================ */
+.hidden-vis { visibility: hidden; }
+.hidden-disp { display: none; }

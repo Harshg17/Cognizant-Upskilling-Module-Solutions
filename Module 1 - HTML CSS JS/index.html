@@ -1,140 +1,723 @@
 <!DOCTYPE html>
+<!-- HTML5 Base Template with semantic structure -->
 <html lang="en">
 <head>
+    <!-- Meta and Bootstrap -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Community Event Portal</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="main.js" defer></script>
-</head>
-<body class="bg-light">
+    <meta name="description" content="Local Community Event Portal - Register, explore and enjoy community events">
+    <title>CivicHub — Community Event Portal</title>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <!-- External Google Font (CSS Topic 5) -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CDN (Bootstrap Topic 1) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons (Bootstrap Topic 17) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- External Stylesheet (CSS Topic 1) -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- jQuery (JS Topic 14) -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<body>
+    <!-- ==================== Navigation ==================== -->
+    <!-- Responsive Navbar (Bootstrap Topic 10) -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Community Portal</a>
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+                <span class="brand-icon"><i class="bi bi-building-fill-check"></i></span>
+                <span class="brand-name">CivicHub</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+                <i class="bi bi-list fs-4"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
-                    <li class="nav-item"><a class="nav-link" href="help.html" target="_blank">Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#feedback">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-accent btn-sm px-3" href="help.html" target="_blank">
+                            <i class="bi bi-question-circle me-1"></i>Help
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container">
-        
-        <section id="home" class="mb-5 text-center shadow-lg rounded position-relative overflow-hidden hero-section">
-            <div class="py-5 px-4 position-relative z-1 text-white">
-                <h2 class="display-4 fw-bolder mb-3">Welcome to the Community Portal!</h2>
-                <p class="lead mb-4">Join us for our upcoming <span class="text-warning fw-bold">special offer</span> events this month!</p>
-                <a href="#events" class="btn btn-warning btn-lg rounded-pill px-4 shadow-sm fw-bold">
-                    Explore Events <i class="bi bi-arrow-down-circle ms-2"></i>
-                </a>
+    <!-- ==================== Main Content ==================== -->
+    <main>
+        <!-- Hero / Home Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-lg-7">
+                        <span class="badge-pill mb-3">
+                            <i class="bi bi-geo-alt-fill me-1"></i> Your City. Your Events.
+                        </span>
+                        <!-- Welcome Banner (HTML Topic 3 — inline style for red heading) -->
+                        <!-- id="welcomeBanner" with blue background via CSS -->
+                        <div id="welcomeBanner">
+                            <h1 class="hero-title">Bringing <span class="text-accent">Communities</span> Together</h1>
+                            <p class="hero-subtitle">
+                                Discover, register, and participate in local events — workshops, concerts, festivals, and more. 
+                                <span class="special-offer" style="color: #ff4a4a; font-weight: 700;">🎉 Free registration this month!</span>
+                            </p>
+                            <div class="d-flex gap-3 flex-wrap mt-4">
+                                <a href="#events" class="btn btn-accent btn-lg px-4">Explore Events</a>
+                                <a href="#register" class="btn btn-outline-light btn-lg px-4">Register Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-flex justify-content-center">
+                        <div class="hero-stats-card">
+                            <div class="stat-item">
+                                <span class="stat-number" id="eventCount">0</span>
+                                <span class="stat-label">Upcoming Events</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="memberCount">0</span>
+                                <span class="stat-label">Registered Members</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <span class="stat-number">12+</span>
+                                <span class="stat-label">Categories</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Scroll indicator -->
+            <a href="#events" class="scroll-indicator">
+                <i class="bi bi-chevron-double-down"></i>
+            </a>
+        </section>
+
+        <!-- ==================== Events Section ==================== -->
+        <section id="events" class="section-padding">
+            <div class="container">
+                <!-- Section Header -->
+                <div class="section-header text-center mb-5">
+                    <span class="section-label">What's On</span>
+                    <h2 class="section-title">Upcoming <span class="text-accent">Events</span></h2>
+                    <p class="section-desc">Explore events happening near you. Filter by category to find what interests you most.</p>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="filter-bar mb-4">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-6">
+                            <!-- Keydown search (JS Topic 8) -->
+                            <div class="search-input-wrap">
+                                <i class="bi bi-search"></i>
+                                <input type="text" id="searchInput" class="form-control" placeholder="Search events by name... (press Enter)" 
+                                       onkeydown="handleSearchKeydown(event)">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- onchange filter (JS Topic 8) -->
+                            <select id="categoryFilter" class="form-select" onchange="filterEventsByCategory(this.value)">
+                                <option value="all">All Categories</option>
+                                <option value="music">🎵 Music</option>
+                                <option value="workshop">🔧 Workshop</option>
+                                <option value="sports">⚽ Sports</option>
+                                <option value="art">🎨 Art & Culture</option>
+                                <option value="food">🍕 Food & Drink</option>
+                                <option value="community">🏘️ Community</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-secondary w-100" onclick="resetFilters()">
+                                <i class="bi bi-x-circle me-1"></i>Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Grid — dynamically populated by JS (JS Topic 7) -->
+                <div class="row g-4" id="eventsGrid">
+                    <!-- Cards generated by JavaScript -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="text-center py-5 d-none">
+                    <i class="bi bi-calendar-x fs-1 text-muted"></i>
+                    <p class="mt-3 text-muted">No events found. Try a different search or category.</p>
+                </div>
+
+                <!-- Event fee display area (onchange JS Topic 6) -->
+                <div id="feeDisplay" class="fee-banner mt-4 d-none">
+                    <i class="bi bi-tag-fill me-2"></i>
+                    Selected Event Fee: <strong id="feeAmount"></strong>
+                </div>
             </div>
         </section>
 
-        <section id="events" class="mb-5">
-            <h3 class="mb-4 text-primary">Featured Events</h3>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card eventCard shadow-sm h-100">
-                        <img src="./pictures/springcleanup.jpg" class="card-img-top" alt="Community Cleanup" title="Cleanup 2025" ondblclick="alert('Enlarging image...')">
-                        <div class="card-body">
-                            <h5 class="card-title">Spring Cleanup</h5>
-                            <p class="card-text text-muted">Join us to keep our city beautiful.</p>
+        <!-- ==================== Image Gallery Section ==================== -->
+        <!-- HTML Topic 4: Table layout with images -->
+        <section id="gallery" class="section-padding bg-subtle">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <span class="section-label">Memories</span>
+                    <h2 class="section-title">Event <span class="text-accent">Gallery</span></h2>
+                    <p class="section-desc">A glimpse into our past community events.</p>
+                </div>
+
+                <!-- Table-based gallery (HTML Topic 4) -->
+                <div class="table-responsive">
+                    <table class="gallery-table mx-auto">
+                        <caption>Community Event Photo Gallery — Past Events 2023–2024</caption>
+                        <tr>
+                            <td>
+                                <!-- ondblclick to enlarge (JS Topic 6) -->
+                                <figure>
+                                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=280&h=180&fit=crop" 
+                                         alt="Annual Music Festival crowd" title="Annual Music Festival 2023" 
+                                         class="gallery-img" ondblclick="enlargeImage(this)">
+                                    <figcaption>Music Festival 2023</figcaption>
+                                </figure>
+                            </td>
+                            <td>
+                                <figure>
+                                    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=280&h=180&fit=crop" 
+                                         alt="Community baking workshop" title="Baking Workshop — Spring 2024" 
+                                         class="gallery-img" ondblclick="enlargeImage(this)">
+                                    <figcaption>Baking Workshop 2024</figcaption>
+                                </figure>
+                            </td>
+                            <td>
+                                <figure>
+                                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=280&h=180&fit=crop" 
+                                         alt="Community sports day" title="Sports Day Summer 2023" 
+                                         class="gallery-img" ondblclick="enlargeImage(this)">
+                                    <figcaption>Sports Day 2023</figcaption>
+                                </figure>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <figure>
+                                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=280&h=180&fit=crop" 
+                                         alt="Art and culture exhibition" title="Art Exhibition — Winter 2023" 
+                                         class="gallery-img" ondblclick="enlargeImage(this)">
+                                    <figcaption>Art Exhibition 2023</figcaption>
+                                </figure>
+                            </td>
+                            <td>
+                                <figure>
+                                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=280&h=180&fit=crop" 
+                                         alt="Food festival stalls" title="Food & Drink Festival 2024" 
+                                         class="gallery-img" ondblclick="enlargeImage(this)">
+                                    <figcaption>Food Festival 2024</figcaption>
+                                </figure>
+                            </td>
+                            <td>
+                                <figure>
+                                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=280&h=180&fit=crop" 
+                                         alt="Community meetup" title="Community Meetup — Spring 2024" 
+                                         class="gallery-img" ondblclick="enlargeImage(this)">
+                                    <figcaption>Community Meetup 2024</figcaption>
+                                </figure>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p class="text-center text-muted mt-3 small"><i class="bi bi-info-circle me-1"></i>Double-click any image to enlarge</p>
+            </div>
+        </section>
+
+        <!-- ==================== Video Section ==================== -->
+        <!-- HTML Topic 7: Video element with media events -->
+        <section id="video" class="section-padding">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5">
+                        <span class="section-label">Watch</span>
+                        <h2 class="section-title">Event <span class="text-accent">Promo</span></h2>
+                        <p class="text-muted">Watch our latest community event promo video and see what's coming up.</p>
+                        <div id="videoStatus" class="video-status-badge d-none">
+                            <i class="bi bi-play-circle-fill me-2"></i>Video ready to play!
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card eventCard shadow-sm h-100">
-                        <img src="event2.jpg" class="card-img-top" alt="Baking Workshop" title="Baking 2025" ondblclick="alert('Enlarging image...')">
-                        <div class="card-body">
-                            <h5 class="card-title">Baking Workshop</h5>
-                            <p class="card-text text-muted">Learn to bake with local pastry chefs.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card eventCard shadow-sm h-100">
-                        <img src="event3.jpg" class="card-img-top" alt="Local Concert" title="Concert 2025" ondblclick="alert('Enlarging image...')">
-                        <div class="card-body">
-                            <h5 class="card-title">Local Concert</h5>
-                            <p class="card-text text-muted">Live music from hometown bands.</p>
+                    <div class="col-lg-7">
+                        <div class="video-wrapper">
+                            <!-- HTML Topic 7: video element with oncanplay -->
+                            <video id="promoVideo" controls class="w-100 rounded-3"
+                                   oncanplay="videoReady()"
+                                   poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=640&h=360&fit=crop">
+                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="schedule" class="mb-5">
-            <h3 class="mb-3">Event Schedule</h3>
-            <table class="event-table w-100">
-                <thead>
-                    <tr>
-                        <th>Event Name</th>
-                        <th>Date</th>
-                        <th>Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Spring Cleanup</td><td>April 12, 2026</td><td>Central Park</td></tr>
-                    <tr><td>Baking Workshop</td><td>April 18, 2026</td><td>Community Center</td></tr>
-                    <tr><td>Local Concert</td><td>May 5, 2026</td><td>Town Square</td></tr>
-                </tbody>
-            </table>
+        <!-- ==================== Registration Form Section ==================== -->
+        <!-- HTML Topic 5: Event Registration Form -->
+        <section id="register" class="section-padding bg-subtle">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <span class="section-label">Join Us</span>
+                    <h2 class="section-title">Event <span class="text-accent">Registration</span></h2>
+                    <p class="section-desc">Fill in the form below to register for your chosen event.</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="form-card">
+                            <!-- Bootstrap form-floating (Bootstrap Topic 8) -->
+                            <form id="registrationForm" novalidate>
+                                <div class="row g-4">
+                                    <!-- Name field with autofocus -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="regName" 
+                                                   placeholder="Full Name" required autofocus
+                                                   name="name">
+                                            <label for="regName"><i class="bi bi-person me-1"></i>Full Name</label>
+                                            <div class="invalid-feedback">Please enter your full name.</div>
+                                        </div>
+                                    </div>
+                                    <!-- Email field -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="regEmail" 
+                                                   placeholder="Email Address" required name="email">
+                                            <label for="regEmail"><i class="bi bi-envelope me-1"></i>Email Address</label>
+                                            <div class="invalid-feedback">Please enter a valid email.</div>
+                                        </div>
+                                    </div>
+                                    <!-- Phone field (onblur validation - HTML Topic 6) -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="tel" class="form-control" id="regPhone" 
+                                                   placeholder="Phone Number" 
+                                                   onblur="validatePhone(this)"
+                                                   name="phone">
+                                            <label for="regPhone"><i class="bi bi-telephone me-1"></i>Phone Number</label>
+                                            <div class="invalid-feedback" id="phoneError">Enter a valid 10-digit number.</div>
+                                        </div>
+                                    </div>
+                                    <!-- Date field -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="regDate" 
+                                                   required name="date">
+                                            <label for="regDate"><i class="bi bi-calendar me-1"></i>Preferred Date</label>
+                                            <div class="invalid-feedback">Please select a date.</div>
+                                        </div>
+                                    </div>
+                                    <!-- Event Type Select (localStorage - HTML Topic 8) -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="eventType" required name="eventType"
+                                                    onchange="saveEventPreference(this.value); showEventFee(this.value)">
+                                                <option value="">Choose an event type</option>
+                                                <option value="music">🎵 Music & Concerts</option>
+                                                <option value="workshop">🔧 Workshop</option>
+                                                <option value="sports">⚽ Sports & Fitness</option>
+                                                <option value="art">🎨 Art & Culture</option>
+                                                <option value="food">🍕 Food & Drink</option>
+                                                <option value="community">🏘️ Community Meetup</option>
+                                            </select>
+                                            <label for="eventType"><i class="bi bi-calendar-event me-1"></i>Event Type</label>
+                                            <div class="invalid-feedback">Please select an event type.</div>
+                                        </div>
+                                    </div>
+                                    <!-- Number of Tickets -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" id="regTickets" 
+                                                   placeholder="Tickets" min="1" max="10" value="1" 
+                                                   required name="tickets">
+                                            <label for="regTickets"><i class="bi bi-ticket me-1"></i>Number of Tickets</label>
+                                        </div>
+                                    </div>
+                                    <!-- Textarea message -->
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="regMessage" 
+                                                      placeholder="Special Requirements" 
+                                                      style="height: 100px" name="message"></textarea>
+                                            <label for="regMessage"><i class="bi bi-chat-text me-1"></i>Special Requirements (Optional)</label>
+                                        </div>
+                                    </div>
+                                    <!-- Fee display -->
+                                    <div class="col-12" id="regFeeDisplay" style="display:none">
+                                        <div class="fee-info-box">
+                                            <i class="bi bi-info-circle me-2"></i>
+                                            Event Fee: <strong id="regFeeText"></strong>
+                                        </div>
+                                    </div>
+                                    <!-- Terms checkbox (Bootstrap Topic 8) -->
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                            <label class="form-check-label" for="termsCheck">
+                                                I agree to the <a href="#" class="link-accent">Terms & Conditions</a>
+                                            </label>
+                                            <div class="invalid-feedback">You must agree to the terms.</div>
+                                        </div>
+                                    </div>
+                                    <!-- Submit button with onclick (JS Topic 6) -->
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-accent btn-lg w-100" 
+                                                id="submitBtn" onclick="handleSubmit(event)">
+                                            <i class="bi bi-check-circle me-2"></i>Register Now
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Output element (HTML Topic 5) -->
+                                <output id="formOutput" class="form-output mt-3 d-block"></output>
+                            </form>
+                            <!-- Clear Preferences Button (HTML Topic 8 — localStorage) -->
+                            <div class="text-center mt-4">
+                                <button class="btn btn-sm btn-outline-secondary" onclick="clearPreferences()">
+                                    <i class="bi bi-trash me-1"></i>Clear Saved Preferences
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="register" class="mb-5 p-4 bg-white shadow rounded border">
-            <h3 class="mb-3">Register for an Event</h3>
-            <form id="registrationForm" onsubmit="document.getElementById('confirmation').value = 'Registration Submitted!'; return false;">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="name" class="form-label">Full Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required autofocus>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="john@example.com" required>
+        <!-- ==================== Feedback Section ==================== -->
+        <section id="feedback" class="section-padding">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <span class="section-label">Your Voice</span>
+                    <h2 class="section-title">Event <span class="text-accent">Feedback</span></h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="form-card">
+                            <div class="mb-4">
+                                <!-- onchange to display fee (JS Topic 6) -->
+                                <label class="form-label">Which event are you reviewing?</label>
+                                <select class="form-select" id="feedbackEvent" 
+                                        onchange="showSelectedFee(this.value)">
+                                    <option value="">Select an event</option>
+                                    <option value="music" data-fee="₹500">Music Festival</option>
+                                    <option value="workshop" data-fee="₹200">Community Workshop</option>
+                                    <option value="sports" data-fee="Free">Sports Day</option>
+                                    <option value="art" data-fee="₹150">Art Exhibition</option>
+                                    <option value="food" data-fee="₹350">Food Festival</option>
+                                </select>
+                                <div id="selectedFeeDisplay" class="fee-mini mt-2 d-none">
+                                    <i class="bi bi-tag me-1"></i>Event Fee: <strong id="selectedFeeText"></strong>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">Your Rating</label>
+                                <div class="star-rating" id="starRating">
+                                    <i class="bi bi-star" data-value="1" onclick="setRating(1)"></i>
+                                    <i class="bi bi-star" data-value="2" onclick="setRating(2)"></i>
+                                    <i class="bi bi-star" data-value="3" onclick="setRating(3)"></i>
+                                    <i class="bi bi-star" data-value="4" onclick="setRating(4)"></i>
+                                    <i class="bi bi-star" data-value="5" onclick="setRating(5)"></i>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <!-- Keyboard events — character count (JS Topic 6) -->
+                                <label class="form-label d-flex justify-content-between">
+                                    Your Feedback
+                                    <span id="charCount" class="text-muted small">0 / 300 characters</span>
+                                </label>
+                                <textarea class="form-control" id="feedbackText" rows="4"
+                                          placeholder="Share your experience..."
+                                          maxlength="300"
+                                          onkeyup="updateCharCount(this)"
+                                          onkeydown="trackKeyEvents(event)"></textarea>
+                            </div>
+
+                            <button class="btn btn-accent w-100" onclick="submitFeedback()">
+                                <i class="bi bi-send me-2"></i>Submit Feedback
+                            </button>
+                            <div id="feedbackResult" class="mt-3"></div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="date" class="form-label">Event Date:</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="eventType" class="form-label">Event Type:</label>
-                        <select class="form-select" id="eventType" name="eventType">
-                            <option value="free">Free Community Event</option>
-                            <option value="paid">Paid Workshop ($10)</option>
-                            <option value="vip">VIP Access ($25)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="message" class="form-label">Feedback/Message:</label>
-                    <textarea class="form-control" id="message" name="message" rows="3"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">Submit Registration</button>
-                <output id="confirmation" class="d-block mt-3 text-success fw-bold text-center"></output>
-            </form>
+            </div>
         </section>
 
+        <!-- ==================== Geolocation Section ==================== -->
+        <!-- HTML Topic 9: Geolocation -->
+        <section id="location" class="section-padding bg-subtle">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <span class="section-label">Near You</span>
+                    <h2 class="section-title">Find <span class="text-accent">Nearby Events</span></h2>
+                    <p class="section-desc">Allow location access to discover events happening near you.</p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <div class="geo-card">
+                            <div class="geo-icon mb-3">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <p class="text-muted mb-4">Click the button below to detect your location and find the nearest community events.</p>
+                            <button class="btn btn-accent btn-lg px-5" onclick="findNearbyEvents()" id="geoBtn">
+                                <i class="bi bi-compass me-2"></i>Find Nearby Events
+                            </button>
+                            <div id="geoResult" class="geo-result mt-4"></div>
+                            <div id="nearbyEvents" class="mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== News/Bulletin Section ==================== -->
+        <!-- CSS Topic 9: Multi-column layout -->
+        <section id="news" class="section-padding">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <span class="section-label">Latest</span>
+                    <h2 class="section-title">Community <span class="text-accent">Bulletin</span></h2>
+                </div>
+                <div class="bulletin-columns">
+                    <h3>Summer Festival Preparations Underway</h3>
+                    <p>The annual Summer Festival committee has begun preparations for the biggest event of the year. Volunteers are needed across multiple departments including logistics, food coordination, and stage management. This year's festival will feature over 30 local artists and craftspeople, with dedicated zones for children's activities and senior citizens. Early bird registrations are now open with a 20% discount.</p>
+                    <p>The event will span three days across the main city park, with dedicated zones for children's activities, food stalls, live performances, and an artisan marketplace. Community feedback from last year has been incorporated into the new layout design. Parking arrangements have been expanded with a new shuttle service from downtown.</p>
+                    <h3>New Workshop Series Launched</h3>
+                    <p>The city council is proud to announce a new monthly workshop series focused on digital skills for senior residents. Topics will include smartphone basics, online banking safety, video calling with family, and social media literacy. The workshops are completely free and will be held every second Saturday at the Community Center.</p>
+                    <p>Instructors are drawn from local tech companies who have volunteered their time to support the initiative. Registration is required as spots are limited to 20 participants per session to ensure personalized attention. Refreshments will be provided. Contact the council office to reserve your spot or register online through this portal.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== Admin Events Table ==================== -->
+        <!-- CSS Topic 7: Table styling -->
+        <section id="admin-table" class="section-padding bg-subtle">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <span class="section-label">Schedule</span>
+                    <h2 class="section-title">Events <span class="text-accent">Schedule</span></h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table w-100">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Event Name</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Venue</th>
+                                <th>Fee</th>
+                                <th>Seats</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== Contact Section ==================== -->
+        <section id="contact" class="section-padding">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-5">
+                        <span class="section-label">Get In Touch</span>
+                        <h2 class="section-title">Contact <span class="text-accent">Us</span></h2>
+                        <div class="contact-info mt-4">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                                <div>
+                                    <strong>City Council Office</strong>
+                                    <p>42 Civic Square, City Center</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                                <div>
+                                    <strong>Phone</strong>
+                                    <p>+91 99999 00000</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p>events@cityhub.gov.in</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Social icons (Bootstrap Topic 17) -->
+                        <div class="social-icons mt-4">
+                            <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+                            <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="social-btn"><i class="bi bi-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="form-card">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="contactName" placeholder="Name">
+                                        <label>Your Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="contactEmail" placeholder="Email">
+                                        <label>Your Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="contactMsg" placeholder="Message" style="height:120px"></textarea>
+                                        <label>Your Message</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-accent w-100" onclick="sendContactMessage()">
+                                        <i class="bi bi-send me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <p class="mb-0">&copy; 2026 Local City Council. All rights reserved.</p>
+    <!-- ==================== Footer ==================== -->
+    <!-- Fixed footer with Bootstrap (Bootstrap Topic 16) -->
+    <footer id="mainFooter">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="brand-icon-sm"><i class="bi bi-building-fill-check"></i></span>
+                        <span class="footer-brand">CivicHub</span>
+                    </div>
+                    <p class="footer-desc">Your one-stop portal for local community events. Connecting citizens, fostering community spirit.</p>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="footer-heading">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#register">Register</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="footer-heading">Categories</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Music & Concerts</a></li>
+                        <li><a href="#">Workshops</a></li>
+                        <li><a href="#">Sports & Fitness</a></li>
+                        <li><a href="#">Art & Culture</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="footer-heading">Resources</h6>
+                    <ul class="footer-links">
+                        <li><a href="help.html" target="_blank">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="footer-copy">© 2024 CivicHub — Local Community Event Portal. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="footer-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- ==================== Modals ==================== -->
+    <!-- Bootstrap Modal (Bootstrap Topic 18) -->
+    <!-- Image Enlarge Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="imageModalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center p-0">
+                    <img id="enlargedImage" src="" alt="" class="img-fluid rounded-bottom">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div class="modal fade" id="eventModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalTitle">Event Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="eventModalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#register" class="btn btn-accent" data-bs-dismiss="modal">Register for this Event</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== Toast Notifications ==================== -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+        <div id="mainToast" class="toast align-items-center" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage"></div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="btn btn-accent back-to-top" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap 5 JS Bundle (Bootstrap Topic 2) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- External JS (JS Topic 1) -->
+    <script src="main.js"></script>
 </body>
 </html>
