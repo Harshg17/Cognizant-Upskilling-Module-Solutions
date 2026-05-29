@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Community Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html" target="_blank">Help</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <section id="home" class="mb-5 text-center shadow-lg rounded position-relative overflow-hidden hero-section">
+            <div class="py-5 px-4 position-relative z-1 text-white">
+                <h2 class="display-4 fw-bolder mb-3">Welcome to the Community Portal!</h2>
+                <p class="lead mb-4">Join us for our upcoming <span class="text-warning fw-bold">special offer</span> events this month!</p>
+                <a href="#events" class="btn btn-warning btn-lg rounded-pill px-4 shadow-sm fw-bold">
+                    Explore Events <i class="bi bi-arrow-down-circle ms-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="events" class="mb-5">
+            <h3 class="mb-4 text-primary">Featured Events</h3>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card eventCard shadow-sm h-100">
+                        <img src="./pictures/springcleanup.jpg" class="card-img-top" alt="Community Cleanup" title="Cleanup 2025" ondblclick="alert('Enlarging image...')">
+                        <div class="card-body">
+                            <h5 class="card-title">Spring Cleanup</h5>
+                            <p class="card-text text-muted">Join us to keep our city beautiful.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card eventCard shadow-sm h-100">
+                        <img src="event2.jpg" class="card-img-top" alt="Baking Workshop" title="Baking 2025" ondblclick="alert('Enlarging image...')">
+                        <div class="card-body">
+                            <h5 class="card-title">Baking Workshop</h5>
+                            <p class="card-text text-muted">Learn to bake with local pastry chefs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card eventCard shadow-sm h-100">
+                        <img src="event3.jpg" class="card-img-top" alt="Local Concert" title="Concert 2025" ondblclick="alert('Enlarging image...')">
+                        <div class="card-body">
+                            <h5 class="card-title">Local Concert</h5>
+                            <p class="card-text text-muted">Live music from hometown bands.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule" class="mb-5">
+            <h3 class="mb-3">Event Schedule</h3>
+            <table class="event-table w-100">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Spring Cleanup</td><td>April 12, 2026</td><td>Central Park</td></tr>
+                    <tr><td>Baking Workshop</td><td>April 18, 2026</td><td>Community Center</td></tr>
+                    <tr><td>Local Concert</td><td>May 5, 2026</td><td>Town Square</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="register" class="mb-5 p-4 bg-white shadow rounded border">
+            <h3 class="mb-3">Register for an Event</h3>
+            <form id="registrationForm" onsubmit="document.getElementById('confirmation').value = 'Registration Submitted!'; return false;">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="name" class="form-label">Full Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required autofocus>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="date" class="form-label">Event Date:</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="eventType" class="form-label">Event Type:</label>
+                        <select class="form-select" id="eventType" name="eventType">
+                            <option value="free">Free Community Event</option>
+                            <option value="paid">Paid Workshop ($10)</option>
+                            <option value="vip">VIP Access ($25)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="message" class="form-label">Feedback/Message:</label>
+                    <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Submit Registration</button>
+                <output id="confirmation" class="d-block mt-3 text-success fw-bold text-center"></output>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p class="mb-0">&copy; 2026 Local City Council. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
