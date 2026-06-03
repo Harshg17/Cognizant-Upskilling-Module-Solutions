@@ -1,17 +1,17 @@
-// ============================================================
-// CivicHub — Community Event Portal
-// main.js — JavaScript for all topics (JS 1–14)
-// ============================================================
 
-// JS Topic 1: Setup — log welcome message
+
+
+
+
+
 console.log("Welcome to the Community Portal");
 console.log("CivicHub Portal Loaded at:", new Date().toLocaleString());
 
-// ============================================================
-// JS Topic 2: Data Types, const/let, Template Literals
-// ============================================================
 
-// Event data — array of objects (JS Topic 5 & 6)
+
+
+
+
 const events = [
     {
         id: 1,
@@ -141,27 +141,27 @@ const events = [
     }
 ];
 
-// const for event name, let for seats (JS Topic 2)
+
 const portalName = "CivicHub Community Portal";
 let totalRegistrations = 0;
 let currentRating = 0;
-let filteredEvents = [...events]; // spread operator (JS Topic 10)
+let filteredEvents = [...events]; 
 
-// Template literal (JS Topic 2)
+
 console.log(`Portal: ${portalName} | Events loaded: ${events.length}`);
 
-// ============================================================
-// JS Topic 8 — localStorage: Preferences
-// ============================================================
+
+
+
 function saveEventPreference(value) {
-    // HTML Topic 8: Save to localStorage
+    
     localStorage.setItem("preferredEventType", value);
     sessionStorage.setItem("currentSession_event", value);
     console.log(`Saved preference: ${value}`);
 }
 
 function loadSavedPreferences() {
-    // Retrieve and pre-select (HTML Topic 8)
+    
     const saved = localStorage.getItem("preferredEventType");
     if (saved) {
         const select = document.getElementById("eventType");
@@ -174,7 +174,7 @@ function loadSavedPreferences() {
 }
 
 function clearPreferences() {
-    // Clear both localStorage and sessionStorage (HTML Topic 8)
+    
     localStorage.clear();
     sessionStorage.clear();
     showToast("✅ Preferences cleared successfully!", "success");
@@ -185,9 +185,9 @@ function clearPreferences() {
     console.log("All preferences cleared.");
 }
 
-// ============================================================
-// JS Topic 5: Objects & Prototypes
-// ============================================================
+
+
+
 function Event(data) {
     this.id = data.id;
     this.name = data.name;
@@ -203,7 +203,7 @@ function Event(data) {
     this.image = data.image;
 }
 
-// Add method to prototype (JS Topic 5)
+
 Event.prototype.checkAvailability = function () {
     if (this.seatsLeft === 0) return "full";
     if (this.seatsLeft <= 15) return "few";
@@ -215,15 +215,15 @@ Event.prototype.getFormattedDate = function () {
     return d.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
 };
 
-// List object keys/values (JS Topic 5)
+
 const sampleEvent = new Event(events[0]);
 console.log("Event properties:", Object.entries(sampleEvent));
 
-// ============================================================
-// JS Topic 4: Functions, Closures, Higher-Order Functions
-// ============================================================
 
-// Closure to track total registrations per category
+
+
+
+
 function createCategoryTracker() {
     const counts = {};
     return {
@@ -242,13 +242,13 @@ function createCategoryTracker() {
 
 const categoryTracker = createCategoryTracker();
 
-// Add event (JS Topic 6 — .push())
+
 function addEvent(eventData) {
     events.push(eventData);
     console.log(`Event added: ${eventData.name}`);
 }
 
-// Register user function (JS Topic 4)
+
 function registerUser(name, email, eventName) {
     try {
         if (!name || !email || !eventName) {
@@ -258,18 +258,18 @@ function registerUser(name, email, eventName) {
         console.log(`Registered: ${name} (${email}) for ${eventName}`);
         return { success: true, message: `Successfully registered ${name} for ${eventName}!` };
     } catch (error) {
-        // JS Topic 3: try-catch
+        
         console.error("Registration error:", error.message);
         return { success: false, message: error.message };
     }
 }
 
-// Filter events by category — callback (JS Topic 4)
+
 function filterEventsByCategory(category, callback) {
     if (category === "all" || !category) {
         filteredEvents = [...events];
     } else {
-        // JS Topic 6: .filter()
+        
         filteredEvents = events.filter(e => e.category === category);
     }
 
@@ -279,7 +279,7 @@ function filterEventsByCategory(category, callback) {
 
     renderEvents(filteredEvents);
 
-    // Show fee for category (JS Topic 6 — onchange)
+    
     const fees = {
         music: "₹250 – ₹500", workshop: "₹200 or Free",
         sports: "Free", art: "₹150 – Free",
@@ -296,11 +296,11 @@ function filterEventsByCategory(category, callback) {
     }
 }
 
-// ============================================================
-// JS Topic 7: DOM Manipulation
-// ============================================================
+
+
+
 function renderEvents(eventsToRender) {
-    // querySelector (JS Topic 7)
+    
     const grid = document.querySelector("#eventsGrid");
     const emptyState = document.getElementById("emptyState");
 
@@ -314,13 +314,13 @@ function renderEvents(eventsToRender) {
 
     emptyState.classList.add("d-none");
 
-    // map to format display cards (JS Topic 6)
+    
     const cardHTML = eventsToRender.map(eventData => {
         const ev = new Event(eventData);
         const availability = ev.checkAvailability();
         const formattedDate = ev.getFormattedDate();
 
-        // Template literal card
+        
         const seatsClass = availability === "few" ? "low" : availability === "full" ? "low" : "";
         const seatsText = ev.seatsLeft === 0 ? "Sold Out" :
             ev.seatsLeft <= 15 ? `Only ${ev.seatsLeft} left!` :
@@ -333,7 +333,7 @@ function renderEvents(eventsToRender) {
                 '<span class="status-badge status-open">Open</span>';
 
         const isPast = new Date(ev.date) < new Date();
-        // JS Topic 3: if-else to hide past events
+        
         if (isPast) return "";
 
         return `
@@ -358,10 +358,10 @@ function renderEvents(eventsToRender) {
         `;
     }).filter(Boolean).join("");
 
-    // createElement equivalent — setting innerHTML (JS Topic 7)
+    
     grid.innerHTML = cardHTML;
 
-    // jQuery fadeIn (JS Topic 14)
+    
     if (typeof $ !== "undefined") {
         $("#eventsGrid .col-md-6").hide().each(function (i) {
             $(this).delay(i * 80).fadeIn(400);
@@ -377,7 +377,7 @@ function getCategoryLabel(cat) {
     return labels[cat] || cat;
 }
 
-// Show event detail modal (Bootstrap Modal — Bootstrap Topic 18)
+
 function showEventDetail(id) {
     const eventData = events.find(e => e.id === id);
     if (!eventData) return;
@@ -419,7 +419,7 @@ function showEventDetail(id) {
     modal.show();
 }
 
-// Update admin table (JS Topic 7 DOM manipulation)
+
 function renderAdminTable() {
     const tbody = document.getElementById("adminTableBody");
     if (!tbody) return;
@@ -446,11 +446,11 @@ function renderAdminTable() {
     tbody.innerHTML = rows;
 }
 
-// ============================================================
-// JS Topic 8: Event Handling
-// ============================================================
 
-// Keydown search (JS Topic 8)
+
+
+
+
 function handleSearchKeydown(event) {
     if (event.key === "Enter") {
         const query = event.target.value.toLowerCase().trim();
@@ -465,7 +465,7 @@ function handleSearchKeydown(event) {
     }
 }
 
-// Reset filters
+
 function resetFilters() {
     document.getElementById("searchInput").value = "";
     document.getElementById("categoryFilter").value = "all";
@@ -474,11 +474,11 @@ function resetFilters() {
     document.getElementById("feeDisplay").classList.add("d-none");
 }
 
-// ============================================================
-// JS Topic 6: HTML Event Handling
-// ============================================================
 
-// onblur phone validation (HTML Topic 6)
+
+
+
+
 function validatePhone(input) {
     const phone = input.value.trim();
     const phoneRegex = /^[6-9]\d{9}$/;
@@ -496,7 +496,7 @@ function validatePhone(input) {
     }
 }
 
-// onchange show fee (HTML Topic 6)
+
 function showEventFee(value) {
     const fees = {
         music: "₹500 per person",
@@ -518,7 +518,7 @@ function showEventFee(value) {
     }
 }
 
-// onclick form submit confirmation (HTML Topic 6)
+
 function handleSubmit(e) {
     e.preventDefault();
 
@@ -530,7 +530,7 @@ function handleSubmit(e) {
     const terms = document.getElementById("termsCheck").checked;
     const output = document.getElementById("formOutput");
 
-    // JS Topic 11: Validate inputs
+    
     if (!name || !email || !date || !eventType || !terms) {
         form.classList.add("was-validated");
         output.className = "form-output error d-block";
@@ -538,7 +538,7 @@ function handleSubmit(e) {
         return;
     }
 
-    // Email validation
+    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         output.className = "form-output error d-block";
@@ -546,10 +546,10 @@ function handleSubmit(e) {
         return;
     }
 
-    // JS Topic 4: registerUser function
+    
     const result = registerUser(name, email, eventType);
 
-    // JS Topic 12: Simulate fetch POST
+    
     simulateApiSubmit({ name, email, date, eventType });
 
     if (result.success) {
@@ -571,11 +571,11 @@ function handleSubmit(e) {
     }
 }
 
-// ============================================================
-// JS Topic 12: AJAX / Fetch API
-// ============================================================
+
+
+
 async function simulateApiSubmit(data) {
-    // Show loading spinner
+    
     const btn = document.getElementById("submitBtn");
     if (btn) {
         btn.disabled = true;
@@ -583,8 +583,8 @@ async function simulateApiSubmit(data) {
     }
 
     try {
-        // JS Topic 9: async/await with fetch
-        // Using httpbin.org as mock API for POST demonstration
+        
+        
         const response = await fetch("https://httpbin.org/post", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -594,11 +594,11 @@ async function simulateApiSubmit(data) {
         const result = await response.json();
         console.log("API Response:", result);
 
-        // setTimeout to simulate delay (JS Topic 12)
+        
         await new Promise(resolve => setTimeout(resolve, 500));
 
     } catch (error) {
-        // .catch equivalent (JS Topic 9)
+        
         console.error("API Error:", error.message);
     } finally {
         if (btn) {
@@ -608,11 +608,11 @@ async function simulateApiSubmit(data) {
     }
 }
 
-// JS Topic 9: Fetch events (async/await with .then/.catch demo)
+
 async function fetchEventsFromAPI() {
     try {
         console.log("Fetching events...");
-        // Simulating fetch from mock API endpoint
+        
         const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=3");
         const data = await response.json();
         console.log("Mock API data fetched:", data.length, "items");
@@ -623,16 +623,16 @@ async function fetchEventsFromAPI() {
     }
 }
 
-// Using .then().catch() pattern (JS Topic 9)
+
 fetchEventsFromAPI()
     .then(data => {
         console.log("Events fetched via .then():", data.length);
     })
     .catch(err => console.error("Fetch failed:", err));
 
-// ============================================================
-// JS Topic 6: ondblclick — enlarge image
-// ============================================================
+
+
+
 function enlargeImage(img) {
     const modal = document.getElementById("imageModal");
     if (!modal) return;
@@ -643,9 +643,9 @@ function enlargeImage(img) {
     console.log("Image enlarged:", img.title);
 }
 
-// ============================================================
-// JS Topic 7: Video oncanplay event
-// ============================================================
+
+
+
 function videoReady() {
     const badge = document.getElementById("videoStatus");
     if (badge) {
@@ -654,9 +654,9 @@ function videoReady() {
     }
 }
 
-// ============================================================
-// JS Topic 6: Character count in feedback textarea
-// ============================================================
+
+
+
 function updateCharCount(textarea) {
     const count = textarea.value.length;
     const counter = document.getElementById("charCount");
@@ -666,7 +666,7 @@ function updateCharCount(textarea) {
     }
 }
 
-// Track key events (JS Topic 6)
+
 function trackKeyEvents(event) {
     const specialKeys = ["Enter", "Backspace", "Delete", "Tab"];
     if (specialKeys.includes(event.key)) {
@@ -674,9 +674,9 @@ function trackKeyEvents(event) {
     }
 }
 
-// ============================================================
-// Star Rating (Feedback)
-// ============================================================
+
+
+
 function setRating(value) {
     currentRating = value;
     const stars = document.querySelectorAll("#starRating i");
@@ -690,9 +690,9 @@ function setRating(value) {
     console.log("Rating set:", value);
 }
 
-// ============================================================
-// Feedback – onchange dropdown (HTML Topic 6)
-// ============================================================
+
+
+
 function showSelectedFee(value) {
     const select = document.getElementById("feedbackEvent");
     const display = document.getElementById("selectedFeeDisplay");
@@ -727,7 +727,7 @@ function submitFeedback() {
             Rating: ${"⭐".repeat(currentRating)}
         </div>`;
 
-    // jQuery fadeIn (JS Topic 14)
+    
     if (typeof $ !== "undefined") {
         $("#feedbackResult").hide().fadeIn(400);
     }
@@ -740,9 +740,9 @@ function submitFeedback() {
     console.log("Feedback submitted.");
 }
 
-// ============================================================
-// JS Topic 9: Geolocation (HTML Topic 9)
-// ============================================================
+
+
+
 function findNearbyEvents() {
     const btn = document.getElementById("geoBtn");
     const result = document.getElementById("geoResult");
@@ -761,10 +761,10 @@ function findNearbyEvents() {
         return;
     }
 
-    // getCurrentPosition with high accuracy options (HTML Topic 9)
+    
     navigator.geolocation.getCurrentPosition(
         function (position) {
-            // Success
+            
             const { latitude, longitude, accuracy } = position.coords;
             result.className = "geo-result success";
             result.innerHTML = `
@@ -775,7 +775,7 @@ function findNearbyEvents() {
                 Accuracy: ~${Math.round(accuracy)}m
             `;
 
-            // Show nearby events (mock based on distance)
+            
             nearbyDiv.innerHTML = `
                 <h6 class="fw-bold mt-2 mb-3">📍 Events Near You</h6>
                 ${events.slice(0, 3).map(e => `
@@ -793,7 +793,7 @@ function findNearbyEvents() {
             btn.innerHTML = '<i class="bi bi-compass me-2"></i>Update Location';
         },
         function (error) {
-            // Error handling (HTML Topic 9)
+            
             let msg = "";
             switch (error.code) {
                 case error.PERMISSION_DENIED:
@@ -814,7 +814,7 @@ function findNearbyEvents() {
             btn.disabled = false;
             btn.innerHTML = '<i class="bi bi-compass me-2"></i>Try Again';
         },
-        // High accuracy options (HTML Topic 9)
+        
         {
             enableHighAccuracy: true,
             timeout: 10000,
@@ -823,9 +823,9 @@ function findNearbyEvents() {
     );
 }
 
-// ============================================================
-// Contact Form
-// ============================================================
+
+
+
 function sendContactMessage() {
     const name = document.getElementById("contactName").value.trim();
     const email = document.getElementById("contactEmail").value.trim();
@@ -843,11 +843,11 @@ function sendContactMessage() {
     console.log("Contact message sent from:", name);
 }
 
-// ============================================================
-// Utility Functions
-// ============================================================
 
-// Toast notification
+
+
+
+
 function showToast(message, type = "info") {
     const toastEl = document.getElementById("mainToast");
     const msgEl = document.getElementById("toastMessage");
@@ -862,7 +862,7 @@ function showToast(message, type = "info") {
     toast.show();
 }
 
-// Animate counter (for hero stats)
+
 function animateCounter(elementId, target) {
     const el = document.getElementById(elementId);
     if (!el) return;
@@ -875,34 +875,34 @@ function animateCounter(elementId, target) {
     }, 30);
 }
 
-// Scroll to top (back-to-top button)
+
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// ============================================================
-// JS Topic 10: Modern JavaScript — destructuring
-// ============================================================
+
+
+
 function getEventSummary(eventData) {
-    // Destructuring (JS Topic 10)
+    
     const { name, date, venue, fee, seatsLeft } = eventData;
     const dateObj = new Date(date);
     return `${name} at ${venue} on ${dateObj.toLocaleDateString("en-IN")} — Fee: ${fee}, Seats: ${seatsLeft}`;
 }
 
-// Default parameters (JS Topic 10)
+
 function createEventCard(title = "Untitled Event", category = "community", fee = "Free") {
     return `${getCategoryLabel(category)}: ${title} (${fee})`;
 }
 
-// Demonstrate spread operator (JS Topic 10)
+
 const upcomingEvents = [...events].filter(e => new Date(e.date) > new Date());
 console.log(`Upcoming events (spread + filter): ${upcomingEvents.length}`);
 console.log("Sample event summary:", getEventSummary(events[0]));
 
-// ============================================================
-// onbeforeunload — warn if form started but not submitted (HTML Topic 7)
-// ============================================================
+
+
+
 let formStarted = false;
 document.addEventListener("input", function (e) {
     if (e.target.closest("#registrationForm")) {
@@ -920,9 +920,9 @@ window.onbeforeunload = function () {
     }
 };
 
-// ============================================================
-// Navbar scroll effect
-// ============================================================
+
+
+
 window.addEventListener("scroll", function () {
     const nav = document.getElementById("mainNav");
     const backToTop = document.getElementById("backToTop");
@@ -936,7 +936,7 @@ window.addEventListener("scroll", function () {
     }
 });
 
-// Active nav link on scroll
+
 const sections = document.querySelectorAll("section[id]");
 window.addEventListener("scroll", function () {
     const scrollPos = window.scrollY + 100;
@@ -955,27 +955,27 @@ window.addEventListener("scroll", function () {
     });
 });
 
-// ============================================================
-// jQuery (JS Topic 14)
-// ============================================================
+
+
+
 $(document).ready(function () {
     console.log("jQuery loaded — CivicHub Portal ready");
 
-    // jQuery click handler (JS Topic 14)
+    
     $(document).on("click", ".event-card .btn-sm", function (e) {
         e.stopPropagation();
         const eventName = $(this).closest(".event-card").find(".event-card-title").text();
         showToast(`📋 Viewing: ${eventName}`, "info");
     });
 
-    // jQuery fadeIn/fadeOut on search input (JS Topic 14)
+    
     $("#searchInput").on("focus", function () {
         $(".filter-bar").addClass("shadow");
     }).on("blur", function () {
         $(".filter-bar").removeClass("shadow");
     });
 
-    // jQuery: highlight class on hover for event cards (JS Topic 14)
+    
     $(document).on("mouseenter", ".event-card", function () {
         $(this).find(".event-card-title").addClass("text-accent");
     }).on("mouseleave", ".event-card", function () {
@@ -983,25 +983,25 @@ $(document).ready(function () {
     });
 });
 
-// ============================================================
-// Initialization — Page Load
-// ============================================================
+
+
+
 window.addEventListener("load", function () {
-    // JS Topic 1: Alert on page load
+    
     console.log("Page fully loaded!");
 
-    // Initialize
+    
     renderEvents(events);
     renderAdminTable();
     loadSavedPreferences();
 
-    // Animate hero counters
+    
     setTimeout(() => {
         animateCounter("eventCount", upcomingEvents.length);
         animateCounter("memberCount", 1247);
     }, 600);
 
-    // Debug logs (JS Topic 13)
+    
     console.group("Portal Debug Info");
     console.log("Total events:", events.length);
     console.log("Upcoming events:", upcomingEvents.length);
