@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Module 3 - Core Java/Task34/src/com.greetings/com.greetings.iml" filepath="$PROJECT_DIR$/Module 3 - Core Java/Task34/src/com.greetings/com.greetings.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module 3 - Core Java/Task34/src/com.utils/com.utils.iml" filepath="$PROJECT_DIR$/Module 3 - Core Java/Task34/src/com.utils/com.utils.iml" />
+    </modules>
+  </component>
+</project>
